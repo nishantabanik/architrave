@@ -1,0 +1,6 @@
+---
+- name: Create Kubernetes Deployment for App Servers
+  k8s:
+    definition: "{{ lookup('template', 'templates/app-servers-deployment.yml.j2') }}"
+    state: present
+  become: yes

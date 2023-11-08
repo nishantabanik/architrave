@@ -1,0 +1,6 @@
+---
+- name: Create Kubernetes Deployment for the Database
+  k8s:
+    definition: "{{ lookup('template', 'templates/database-deployment.yml.j2') }}"
+    state: present
+  become: yes

@@ -1,0 +1,8 @@
+---
+- name: Create Load Balancer Service
+  hosts: k8s-cluster
+  become: yes
+  roles:
+    - load_balancer
+  vars:
+    load_balancer_target_port: 80  # Port to which the load balancer should forward traffic

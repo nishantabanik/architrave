@@ -1,0 +1,21 @@
+---
+- name: Deploy 3-Tier Web Application
+  hosts: k8s-cluster
+  become: yes
+  roles:
+    - load_balancer
+    - web_frontend
+    - app_servers
+    - database
+  
+  # We may want to add the variable values here too!!
+  # vars:
+  #   load_balancer_target_port: 80  # Port to which the load balancer should forward traffic
+  #   frontend_replicas: 3  # Number of replicas for the web frontends
+  #   frontend_image: my-web-frontend-image:latest  # Docker image for the web frontends
+  #   app_servers_replicas: 3  # Number of replicas for the application servers
+  #   app_server_image: my-app-server-image:latest  # Docker image for the application servers
+  #   database_username: mydbuser  # Database username
+  #   database_port: 5432  # Database port
+  #   database_replicas: 1  # Number of replicas for the database
+  #   database_image: my-database-image:latest  # Docker image for the database

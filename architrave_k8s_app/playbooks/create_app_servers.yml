@@ -1,0 +1,9 @@
+---
+- name: Create Application Servers Deployment
+  hosts: k8s-cluster
+  become: yes
+  roles:
+    - app_servers
+  vars:
+    app_servers_replicas: 3  # Number of replicas for the application servers
+    app_server_image: my-app-server-image:latest  # Docker image for the application servers

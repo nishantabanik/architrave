@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-servers
+spec:
+  replicas: {{ app_servers_replicas }}
+  selector:
+    matchLabels:
+      app: app-servers
+  template:
+    metadata:
+      labels:
+        app: app-servers
+    spec:
+      containers:
+      - name: app-server-container
+        image: {{ app_server_image }}
+        ports:
+        - containerPort: 8080  # Adjust the port as needed
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        # Add other container settings and environment variables here
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0

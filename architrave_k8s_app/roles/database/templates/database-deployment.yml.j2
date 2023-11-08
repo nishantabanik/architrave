@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  replicas: {{ database_replicas }}
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: database-container
+          image: {{ database_image }}
+          ports:
+            - containerPort: {{ database_port }}
+          env:
+            - name: DATABASE_USERNAME
+              value: {{ database_username }}
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: database-password
+                  ### We can store the database password securely in a Kubernetes Secret 
+                  ### and reference it using valueFrom

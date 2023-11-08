@@ -1,0 +1,4 @@
+[prod-k8s-cluster]
+k8s-node-1
+k8s-node-2
+k8s-node-3

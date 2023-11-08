@@ -1,0 +1,9 @@
+---
+- name: Update the application
+  hosts: k8s-cluster
+  become: yes
+  roles:
+    - app_servers
+  vars:
+    frontend_image: my-frontend-image:new_version
+    app_server_image: my-app-server-image:new_version

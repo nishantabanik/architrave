@@ -1,0 +1,9 @@
+---
+- name: Create Web Frontend Deployment
+  hosts: k8s-cluster
+  become: yes
+  roles:
+    - web_frontend
+  vars:
+    frontend_replicas: 3  # Number of replicas for the web frontends
+    frontend_image: my-web-frontend-image:latest  # Docker image for the web frontends

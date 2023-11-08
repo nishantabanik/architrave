@@ -1,0 +1,3 @@
+---
+- name: Include common tasks here
+  include_tasks: tasks/common.yml

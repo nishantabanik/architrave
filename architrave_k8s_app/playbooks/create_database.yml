@@ -1,0 +1,9 @@
+---
+- name: Create Database Deployment
+  hosts: k8s-cluster
+  become: yes
+  roles:
+    - database
+  vars:
+    database_replicas: 1  # Number of replicas for the database
+    database_image: my-database-image:latest  # Docker image for the database
